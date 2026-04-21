@@ -6,7 +6,7 @@
 
 # Inherit some common Lineage stuff.
 TARGET_DISABLE_EPPE := true
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/derp/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
@@ -16,11 +16,18 @@ include device/google/crosshatch/crosshatch/device-lineage.mk
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3 XL
-PRODUCT_NAME := lineage_crosshatch
+PRODUCT_NAME := derp_crosshatch
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2960
 TARGET_SCREEN_WIDTH := 1440
+TARGET_BOOT_ANIMATION_RES := 1080
+
+IS_PHONE := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := false
+
+# Enable quick tap
+TARGET_SUPPORTS_QUICK_TAP := true
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_PRODUCT=crosshatch \
