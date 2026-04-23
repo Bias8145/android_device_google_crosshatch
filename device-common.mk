@@ -23,6 +23,9 @@ PRODUCT_PLATFORM := sdm845
 
 include device/google/crosshatch/device.mk
 
+# Ship GCam
+$(call inherit-product, vendor/Camera/b1c1/config.mk)
+
 # Audio fluence, ns, aec property, voice volume steps
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluencepro \

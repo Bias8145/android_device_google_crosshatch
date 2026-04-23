@@ -583,7 +583,7 @@ PRODUCT_COPY_FILES += \
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # Subsystem ramdump
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.sys.ssr.enable_ramdumps=1
+    persist.vendor.sys.ssr.enable_ramdumps=0
 endif
 
 # Subsystem silent restart
@@ -757,9 +757,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.systemuicompilerfilter=speed
 
 # Enable stats logging in LMKD
-TARGET_LMKD_STATS_LOG := true
+TARGET_LMKD_STATS_LOG := false
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.lmk.log_stats=true
+    ro.lmk.log_stats=false
 
 # default usb oem functions
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
@@ -820,7 +820,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
 # Vendor verbose logging default property
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.verbose_logging_enabled=true
+    persist.vendor.verbose_logging_enabled=false
 else
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.verbose_logging_enabled=false
