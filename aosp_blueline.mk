@@ -56,8 +56,32 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_blueline
+# Inherit some common PixelOS stuff.
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+include device/google/crosshatch/blueline/device-custom.mk
+
+# Device identifier. This must come after all inclusions
+PRODUCT_BRAND := google
 PRODUCT_DEVICE := blueline
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on blueline
+PRODUCT_MANUFACTURER := Google
+PRODUCT_MODEL := Pixel 3
+PRODUCT_NAME := aosp_blueline
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2160
+TARGET_SCREEN_WIDTH := 1080
+
+TARGET_SUPPORT_MINIMAL_GAPPS := true
+TARGET_SUPPORT_PIXEL_LAUNCHER := true
+TARGET_HAS_GEMINI_BOOTANIMATION := true
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_SUPPORT_LIVE_WALLPAPER := false
+GMS_VOICE_MODEL_INCLUDED := false
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BuildDesc="blueline-user 12 SP1A.210812.016.C2 8618562 release-keys" \
+    BuildFingerprint=google/blueline/blueline:12/SP1A.210812.016.C2/8618562:user/release-keys \
+    DeviceProduct=blueline
+
+$(call inherit-product, vendor/google/blueline/blueline-vendor.mk)

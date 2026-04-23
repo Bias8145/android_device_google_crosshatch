@@ -56,8 +56,32 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_crosshatch
+# Inherit some common PixelOS stuff.
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+include device/google/crosshatch/blueline/device-custom.mk
+
+# Device identifier. This must come after all inclusions
+PRODUCT_BRAND := google
 PRODUCT_DEVICE := crosshatch
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on crosshatch
+PRODUCT_MANUFACTURER := Google
+PRODUCT_MODEL := Pixel 3 XL
+PRODUCT_NAME := aosp_crosshatch
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 2960
+TARGET_SCREEN_WIDTH := 1440
+
+TARGET_SUPPORT_MINIMAL_GAPPS :=	true
+TARGET_SUPPORT_PIXEL_LAUNCHER := true
+TARGET_HAS_GEMINI_BOOTANIMATION := true
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_SUPPORT_LIVE_WALLPAPER := false
+GMS_VOICE_MODEL_INCLUDED := false
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    BuildDesc="crosshatch-user 12 SP1A.210812.016.C2 8618562 release-keys" \
+    BuildFingerprint=google/crosshatch/crosshatch:12/SP1A.210812.016.C2/8618562:user/release-keys \
+    DeviceProduct=crosshatch
+
+$(call inherit-product, vendor/google/crosshatch/crosshatch-vendor.mk)
