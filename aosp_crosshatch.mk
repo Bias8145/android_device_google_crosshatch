@@ -61,8 +61,28 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_crosshatch
+
+# Inherit some common Aosp stuff.
+TARGET_DISABLE_EPPE := true
+$(call inherit-product, vendor/derp/config/common_full_phone.mk)
+
+# Inherit device configuration
+$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
+
+include device/google/crosshatch/crosshatch/device-lineage.mk
+
+# Device identifier. This must come after all inclusions
+PRODUCT_BRAND := google
 PRODUCT_DEVICE := crosshatch
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on crosshatch
+PRODUCT_MANUFACTURER := Google
+PRODUCT_MODEL := Pixel 3 XL
+PRODUCT_NAME := aosp_crosshatch
+
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_PRODUCT=crosshatch \
+    PRIVATE_BUILD_DESC="crosshatch-user 12 SP1A.210812.016.C2 8618562 release-keys"
+
+BUILD_FINGERPRINT := google/crosshatch/crosshatch:12/SP1A.210812.016.C2/8618562:user/release-keys
+
+$(call inherit-product, vendor/google/crosshatch/crosshatch-vendor.mk)
