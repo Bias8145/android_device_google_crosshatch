@@ -14,10 +14,24 @@ DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
 # Kernel
 BOARD_KERNEL_IMAGE_NAME := Image.lz4
 TARGET_COMPILE_WITH_MSM_KERNEL := true
-TARGET_KERNEL_CLANG_VERSION := r416183b
-TARGET_KERNEL_CLANG_PATH := $(abspath .)/prebuilts/clang/kernel/$(HOST_PREBUILT_TAG)/clang-$(TARGET_KERNEL_CLANG_VERSION)
+
+# Proton Clang: The "Pakan Super" for a Gacor Build!
+TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/proton-clang
+TARGET_KERNEL_LLVM_BINUTILS := true
+
+# Unleash the LLVM Power - Making your Pixel 3 go "kicau kicaaau maniaaaaa"
+# Removed the obsolete PATH to keep the referees happy and the build smooth.
+TARGET_KERNEL_ADDITIONAL_FLAGS := \
+    LLVM=1 \
+    LLVM_IAS=1 \
+    LD=ld.lld \
+    AR=llvm-ar \
+    NM=llvm-nm \
+    OBJCOPY=llvm-objcopy \
+    OBJDUMP=llvm-objdump \
+    STRIP=llvm-strip
+
 TARGET_KERNEL_CONFIG := b1c1_defconfig
-TARGET_KERNEL_LLVM_BINUTILS := false
 TARGET_KERNEL_SOURCE := kernel/google/msm-4.9
 TARGET_NEEDS_DTBOIMAGE := true
 

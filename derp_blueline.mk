@@ -41,11 +41,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_product.mk)
 # TODO(b/136525499): move *_vendor.mk into the vendor makefile later
 $(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
-$(call inherit-product, device/google/crosshatch/device-crosshatch.mk)
+$(call inherit-product, device/google/crosshatch/device-blueline.mk)
 $(call inherit-product-if-exists, vendor/google_devices/crosshatch/proprietary/device-vendor.mk)
-
-PRODUCT_SOONG_NAMESPACES += \
-    vendor/google_devices/crosshatch/proprietary/hardwareinfo
 
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
 
@@ -61,32 +58,34 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-
 # Inherit some common Aosp stuff.
 TARGET_DISABLE_EPPE := true
 $(call inherit-product, vendor/derp/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
-
-include device/google/crosshatch/crosshatch/device-lineage.mk
+include device/google/crosshatch/blueline/device-custom.mk
 
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
-PRODUCT_DEVICE := crosshatch
+PRODUCT_DEVICE := blueline
 PRODUCT_MANUFACTURER := Google
-PRODUCT_MODEL := Pixel 3 XL
-PRODUCT_NAME := aosp_crosshatch
+PRODUCT_MODEL := Pixel 3
+PRODUCT_NAME := derp_blueline
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2960
-TARGET_SCREEN_WIDTH := 1440
+TARGET_SCREEN_HEIGHT := 2160
+TARGET_SCREEN_WIDTH := 1080
 TARGET_BOOT_ANIMATION_RES := 1080
 
+IS_PHONE := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := false
+
+# Enable quick tap
+TARGET_SUPPORTS_QUICK_TAP := true
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_PRODUCT=crosshatch \
-    PRIVATE_BUILD_DESC="crosshatch-user 12 SP1A.210812.016.C2 8618562 release-keys"
+    TARGET_PRODUCT=blueline \
+    PRIVATE_BUILD_DESC="blueline-user 12 SP1A.210812.016.C2 8618562 release-keys"
 
-BUILD_FINGERPRINT := google/crosshatch/crosshatch:12/SP1A.210812.016.C2/8618562:user/release-keys
+BUILD_FINGERPRINT := google/blueline/blueline:12/SP1A.210812.016.C2/8618562:user/release-keys
 
-$(call inherit-product, vendor/google/crosshatch/crosshatch-vendor.mk)
+$(call inherit-product, vendor/google/blueline/blueline-vendor.mk)
