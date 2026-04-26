@@ -58,8 +58,28 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_blueline
+
+# Inherit some common Aosp stuff.
+TARGET_DISABLE_EPPE := true
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+# Inherit device configuration
+$(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
+
+include device/google/crosshatch/blueline/device-lineage.mk
+
+# Device identifier. This must come after all inclusions
+PRODUCT_BRAND := google
 PRODUCT_DEVICE := blueline
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on blueline
+PRODUCT_MANUFACTURER := Google
+PRODUCT_MODEL := Pixel 3
+PRODUCT_NAME := aosp_blueline
+
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_PRODUCT=blueline \
+    PRIVATE_BUILD_DESC="blueline-user 12 SP1A.210812.016.C2 8618562 release-keys"
+
+BUILD_FINGERPRINT := google/blueline/blueline:12/SP1A.210812.016.C2/8618562:user/release-keys
+
+$(call inherit-product, vendor/google/blueline/blueline-vendor.mk)
