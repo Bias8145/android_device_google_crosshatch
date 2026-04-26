@@ -58,15 +58,11 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
   PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 endif
 
-
 # Inherit some common Aosp stuff.
 TARGET_DISABLE_EPPE := true
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
-
-include device/google/crosshatch/blueline/device-lineage.mk
+include device/google/crosshatch/blueline/device-custom.mk
 
 # Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
