@@ -1,1 +1,1 @@
-genfscon debugfs /ion/heaps/system                    u:object_r:debugfs_system_ion_heap:s0
+# Rule moved to vendor/qcom/common/genfs_contexts to avoid AOSP 15 merge conflict
