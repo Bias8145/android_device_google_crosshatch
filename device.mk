@@ -881,3 +881,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Set system properties identifying the chipset
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=Qualcomm
 PRODUCT_VENDOR_PROPERTIES += ro.soc.model=SDM845
+
+-include vendor/lineage-priv/keys/keys.mk
+
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
