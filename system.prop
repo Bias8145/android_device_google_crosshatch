@@ -1,0 +1,7 @@
+# Pixel 3 System Properties
+ro.product.marketname=Google Pixel 3
+ro.infinity.soc=Snapdragon 845
+ro.infinity.battery=2915 mAh
+ro.infinity.display=1080 x 2160, 60 Hz
+ro.infinity.camera=12.2 MP
+

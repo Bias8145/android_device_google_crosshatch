@@ -44,3 +44,7 @@ endif
 
 # Verified Boot
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+
+# Props
+DEVICE_PATH := device/google/crosshatch
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop

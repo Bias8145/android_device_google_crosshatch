@@ -57,7 +57,7 @@ ifneq (REL,$(PLATFORM_VERSION_CODENAME))
 endif
 
 # Inherit some common PixelOS stuff.
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
 include device/google/crosshatch/blueline/device-custom.mk
 
@@ -72,12 +72,23 @@ PRODUCT_NAME := aosp_blueline
 TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
 
-TARGET_SUPPORT_MINIMAL_GAPPS := true
-TARGET_SUPPORT_PIXEL_LAUNCHER := true
-TARGET_HAS_GEMINI_BOOTANIMATION := true
-TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_SUPPORT_LIVE_WALLPAPER := false
-GMS_VOICE_MODEL_INCLUDED := false
+# Whether you are compiling being an OFFICIAL Maintainer:
+#INFINITY_BUILD_TYPE := OFFICIAL
+
+# Maintainer Name
+INFINITY_MAINTAINER := khaliq
+
+# Whether the package includes System BLURS
+TARGET_SUPPORTS_BLUR := true
+
+# Whether the compiled package ships Google Apps:
+WITH_GAPPS := true
+
+# Whether the compiled package ships more (mostly unimportant) Google Apps:
+TARGET_SHIPS_FULL_GAPPS := true
+
+# Whether the compiled shipped gapps package uses Google Dialer:
+TARGET_SHIPS_GOOGLE_DIALER := true
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="blueline-user 12 SP1A.210812.016.C2 8618562 release-keys" \
