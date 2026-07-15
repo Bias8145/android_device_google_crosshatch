@@ -52,7 +52,7 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 # b/189477034: Bypass build time check on uses_libs until vendor fixes all their apps
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
-# Inherit some common PixelExperience stuff.
+# Inherit some common Afterlife stuff.
 $(call inherit-product, vendor/afterlife/config/common_full_phone.mk)
 
 # Inherit device configuration
