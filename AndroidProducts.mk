@@ -15,13 +15,13 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_crosshatch.mk \
+    $(LOCAL_DIR)/afterlife_crosshatch.mk \
     $(LOCAL_DIR)/afterlife_blueline.mk \
     $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
     $(LOCAL_DIR)/aosp_blueline_hwasan.mk \
     $(LOCAL_DIR)/vf/aosp_crosshatch_vf.mk \
 
 COMMON_LUNCH_CHOICES := \
-    aosp_crosshatch-userdebug \
+    afterlife_crosshatch-userdebug \
     afterlife_blueline-userdebug \
     aosp_crosshatch_vf-userdebug
